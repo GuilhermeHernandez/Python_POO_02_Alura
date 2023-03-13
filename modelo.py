@@ -1,59 +1,43 @@
-class Filme:
-    def __init__(self,nome,ano,duracao):
-        self.__nome = nome
+class Programa:
+    def __init__(self, nome, ano):
+        self._nome = nome.title()
         self.ano = ano
+        self._likes = 0
+
+    @property
+    def likes(self):
+        return self._likes
+
+    def dar_likes(self):
+        self._likes += 1
+
+    @property
+    def nome(self):
+        return self._nome
+
+    @nome.setter
+    def nome(self, nome):
+        self._nome = nome
+
+class Filme(Programa):
+    def __init__(self, nome, ano, duracao):
+        super().__init__(nome, ano)
         self.duracao = duracao
-        self.__like = 0
 
-    @property
-    def nome(self):
-        return self.__nome.title()
+class Serie(Programa):
+    def __init__(self, nome, ano, temporadas):
+        super().__init__(nome, ano)
+        self.temporadas = temporadas
 
-    @nome.setter
-    def nome(self,novo_nome):
-        self.__nome = novo_nome.title()
+vingadores = Filme('vingadores - guerra infinita', 2018, 160)
+atlanta = Serie('atlanta', 2018, 2)
 
-    @property
-    def likes(self):
-        return self.__like
+vingadores.dar_likes()
+vingadores.dar_likes()
+vingadores.dar_likes()
 
-    def dar_like (self):
-        self.__like += 1
+atlanta.dar_likes()
+atlanta.dar_likes()
 
-
-class Serie:
-    def __init__(self, nome, ano, temporada):
-        self.__nome = nome
-        self.ano = ano
-        self.temporada = temporada
-        self.__like = 0
-
-    @property
-    def nome(self):
-        return self.__nome.title()
-
-    @nome.setter
-    def nome(self, novo_nome):
-        self.__nome = novo_nome.title()
-
-    @property
-    def likes(self):
-        return self.__like
-
-    def dar_like(self):
-        self.__like += 1
-
-
-vingadores = Filme('vingadores',2018,160)
-vingadores.dar_like()
-vingadores.nome = 'Mercenarios'
-
-print(f'Nome do filme: {vingadores.nome} - Ano : {vingadores.ano} - Duração : {vingadores.duracao}')
-print(f'Quantidade de likes : {vingadores.likes}')
-
-
-rick = Serie('Rick and Morty',2019,6)
-rick.dar_like()
-
-print(f'Nome do filme: {rick.nome} - Ano : {rick.ano} - Temporada : {rick.temporada}')
-print(f'Quantidade de likes : {rick.likes}')
+print(f'Nome: {vingadores.nome} - Likes: {vingadores.likes}')
+print(f'Nome: {atlanta.nome} - Likes: {atlanta.likes}')
