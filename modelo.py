@@ -40,9 +40,29 @@ class Serie(Programa):
     def __str__(self):
         return f'Nome: {self._nome} - {self.temporadas} Temporadas - {self.ano} Ano - Likes: {self._likes}'
 
+class playlist:
+    #PROGRAMAS PODE SER UMA LISTA DE OBEJTOS REFERENTE A FILME E SERIES
+    def __init__(self,nome , programas):
+        self.nome = nome
+        self._programas = programas
+
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        return len(self._programas)
+
+        #CRIANDO UM OBJETO QUE VAI SETTAR UMA LISTA DE PROGRAMA
+        #super().__init__(programas)
+
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
+mercenarios = Filme('mercenarios',2015,100)
 atlanta = Serie('atlanta', 2018, 2)
+simpsons = Serie('simpsons',2000,30)
+
 
 vingadores.dar_likes()
 vingadores.dar_likes()
@@ -51,8 +71,21 @@ vingadores.dar_likes()
 atlanta.dar_likes()
 atlanta.dar_likes()
 
+mercenarios.dar_likes()
+mercenarios.dar_likes()
 
-filmes_e_series = [vingadores, atlanta]  #Lista recebe qualquer tipo de dados
+simpsons.dar_likes()
+simpsons.dar_likes()
 
-for programa in filmes_e_series:
+
+filmes_e_series = [vingadores, atlanta, mercenarios, simpsons]  #Lista recebe qualquer tipo de dados
+
+playlist_assistir = playlist('Lista de videos',filmes_e_series)
+
+print(f'\nTamanho da playlist:{playlist_assistir.tamanho}\n')
+
+#PARA PERCORRER A LISTA , PRECISO PASSAR O ITEM DO OBJETO
+for programa in playlist_assistir.listagem:
     print(programa)
+
+print(f'\nSimpsons esta na playlist: {simpsons in playlist_assistir.listagem}')
