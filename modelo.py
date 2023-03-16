@@ -46,13 +46,21 @@ class playlist:
         self.nome = nome
         self._programas = programas
 
+    #DUCK TIPE > REPRESENTA UM COMPORTAMENTO DE UMA LISTA , CONSEGUIMOS INTERAR O ITEM DA LISTA
+    def __getitem__(self, item):
+        return self._programas[item]
+
     @property
     def listagem(self):
         return self._programas
 
-    @property
-    def tamanho(self):
+    #FUNÇÃO DE UMA LISTA REESCRITA AQUI NA NOSSA CLASSE
+    def __len__(self):
         return len(self._programas)
+
+    #@property
+    #def tamanho(self):
+    #    return len(self._programas)
 
         #CRIANDO UM OBJETO QUE VAI SETTAR UMA LISTA DE PROGRAMA
         #super().__init__(programas)
@@ -82,10 +90,10 @@ filmes_e_series = [vingadores, atlanta, mercenarios, simpsons]  #Lista recebe qu
 
 playlist_assistir = playlist('Lista de videos',filmes_e_series)
 
-print(f'\nTamanho da playlist:{playlist_assistir.tamanho}\n')
+print(f'\nTamanho da playlist:{len(playlist_assistir)}\n')
 
 #PARA PERCORRER A LISTA , PRECISO PASSAR O ITEM DO OBJETO
-for programa in playlist_assistir.listagem:
+for programa in playlist_assistir:
     print(programa)
 
-print(f'\nSimpsons esta na playlist: {simpsons in playlist_assistir.listagem}')
+print(f'\nSimpsons esta na playlist: {simpsons in playlist_assistir}')
